@@ -70,11 +70,11 @@ it('knows when someone won', () => {
     ]),
   ).toEqual(true)
 
-  //   expect(
-  //   isWon([
-  //     [1, 0, 0],
-  //     [1, 0, 0],
-  //     [1, 0, 0],
-  //   ]),
-  // ).toEqual(true)
+  expect(
+    isWon([
+      [1, 0, 0],
+      [1, 0, 0],
+      [1, 0, 0],
+    ]),
+  ).toEqual(true)
 })
