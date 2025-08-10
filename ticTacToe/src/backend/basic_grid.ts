@@ -14,8 +14,12 @@ const play = (x: number, y: number) => {
   return grid
 }
 
-const isWon = (board: number[][]) => {
-  return checkRows(board, 1) || checkDiagonals(board, 1) || checkCols(board, 1)
+function isWon(board: number[][]): boolean
+function isWon(board: number[][], playerNb: 1 | 2): boolean
+function isWon(board: number[][], playerNb?: 1 | 2): boolean {
+  if (playerNb === undefined) return isWon(board, 1) || isWon(board, 2)
+
+  return checkRows(board, playerNb) || checkDiagonals(board, playerNb) || checkCols(board, playerNb)
 }
 
 const checkRows = (board: number[][], playerNb: 1 | 2) => {

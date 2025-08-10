@@ -70,12 +70,12 @@ describe('knows winning rules', () => {
   it('not a win', () => {
     expect(isWon(emptyGrid)).toEqual(false)
 
-    // expect(
-    //   isWon([
-    //     [1, 0, 2],
-    //     [0, 0, 0],
-    //     [0, 0, 1],
-    //   ]),
-    // ).toEqual(false)
+    expect(
+      isWon([
+        [1, 0, 2],
+        [0, 0, 0],
+        [0, 0, 1],
+      ]),
+    ).toEqual(false)
   })
 })
