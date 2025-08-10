@@ -32,6 +32,22 @@ it('knows when someone won', () => {
 
   expect(
     isWon([
+      [1, 0, 1],
+      [0, 0, 0],
+      [0, 0, 0],
+    ]),
+  ).toEqual(false)
+
+  expect(
+    isWon([
+      [1, 0, 1],
+      [0, 0, 0],
+      [0, 0, 1],
+    ]),
+  ).toEqual(false)
+
+  expect(
+    isWon([
       [1, 1, 1],
       [0, 0, 0],
       [0, 0, 0],
@@ -45,4 +61,20 @@ it('knows when someone won', () => {
       [1, 1, 1],
     ]),
   ).toEqual(true)
+
+  expect(
+    isWon([
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1],
+    ]),
+  ).toEqual(true)
+
+  //   expect(
+  //   isWon([
+  //     [1, 0, 0],
+  //     [1, 0, 0],
+  //     [1, 0, 0],
+  //   ]),
+  // ).toEqual(true)
 })
