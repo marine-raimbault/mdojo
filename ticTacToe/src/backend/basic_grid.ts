@@ -15,47 +15,33 @@ const play = (x: number, y: number) => {
 }
 
 const isWon = (board: number[][]) => {
-  return (
-    checkRows(board) == 1 ||
-    checkRows(board) == 2 ||
-    checkDiagonals(board) ||
-    checkCols(board) == 1 ||
-    checkCols(board) == 2
-  )
+  return checkRows(board, 1) || checkDiagonals(board, 1) || checkCols(board, 1)
 }
 
-// return 0 if no winner, 1 or 2 whether player one or player 2 won
-const checkRows = (board: number[][]) => {
+const checkRows = (board: number[][], playerNb: 1 | 2) => {
   for (let i = 0; i < BOARD_SIZE; i++) {
-    if (board[i].every((n) => n == 1)) return 1
-    if (board[i].every((n) => n == 2)) return 2
+    if (board[i].every((n) => n == playerNb)) return true
   }
   return 0
 }
 
-const checkCols = (board: number[][]) => {
-  let sumOfOnes = 0
-  let sumOfTwos = 0
+const checkCols = (board: number[][], playerNb: 1 | 2) => {
+  let sum = 0
   for (let j = 0; j < BOARD_SIZE; j++) {
     for (let i = 0; i < BOARD_SIZE; i++) {
-      if (board[i][j] == 1) sumOfOnes++
-      else if (board[i][j] == 2) sumOfTwos++
+      if (board[i][j] == playerNb) sum++
     }
-    if (sumOfOnes === BOARD_SIZE) return 1
-    if (sumOfTwos === BOARD_SIZE) return 2
-
-    sumOfOnes = 0
-    sumOfTwos = 0
+    if (sum === BOARD_SIZE) return true
   }
-  return 0
+  return false
 }
 
-const checkDiagonals = (board: number[][]) => {
+const checkDiagonals = (board: number[][], playerNb: 1 | 2) => {
   let sumFirstDiag = 0
   let sumSecDiag = 0
   for (let i = 0; i < BOARD_SIZE; i++) {
-    sumFirstDiag += board[i][i]
-    sumSecDiag += board[i][BOARD_SIZE - i - 1]
+    if (board[i][i] == playerNb) sumFirstDiag++
+    if (board[i][BOARD_SIZE - i - 1] == playerNb) sumSecDiag++
   }
   return sumFirstDiag == BOARD_SIZE || sumSecDiag == BOARD_SIZE
 }
