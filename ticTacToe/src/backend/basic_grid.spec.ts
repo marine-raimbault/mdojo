@@ -1,6 +1,6 @@
 import { it, expect } from 'vitest'
 
-import { play } from './basic_grid'
+import { isWon, play } from './basic_grid'
 
 const startGrid = [
   [0, 0, 0],
@@ -25,4 +25,24 @@ it('play two turn', () => {
     [0, 2, 0],
     [0, 0, 0],
   ])
+})
+
+it('knows when someone won', () => {
+  expect(isWon(startGrid)).toEqual(false)
+
+  expect(
+    isWon([
+      [1, 1, 1],
+      [0, 0, 0],
+      [0, 0, 0],
+    ]),
+  ).toEqual(true)
+
+  expect(
+    isWon([
+      [0, 0, 0],
+      [0, 0, 0],
+      [1, 1, 1],
+    ]),
+  ).toEqual(true)
 })
