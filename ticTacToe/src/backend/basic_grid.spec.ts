@@ -1,7 +1,28 @@
 import { it, expect } from 'vitest'
 
-import { hello } from './basic_grid'
+import { play } from './basic_grid'
 
-it('says hi', () => {
-  expect(hello()).toEqual('hi')
+const startGrid = [
+  [0, 0, 0],
+  [0, 0, 0],
+  [0, 0, 0],
+]
+
+it('play two turn', () => {
+  let board = startGrid
+
+  board = play(0, 0)
+  expect(board).toEqual([
+    [1, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ])
+
+  board = play(1, 1)
+
+  expect(board).toEqual([
+    [1, 0, 0],
+    [0, 1, 0],
+    [0, 0, 0],
+  ])
 })
