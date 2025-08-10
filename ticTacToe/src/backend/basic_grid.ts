@@ -31,11 +31,13 @@ const checkRows = (board: number[][]) => {
 }
 
 const checkDiagonals = (board: number[][]) => {
-  let sum = 0
+  let sumFirstDiag = 0
+  let sumSecDiag = 0
   for (let i = 0; i < BOARD_SIZE; i++) {
-    sum += board[i][i]
+    sumFirstDiag += board[i][i]
+    sumSecDiag += board[i][BOARD_SIZE - i - 1]
   }
-  return sum == BOARD_SIZE
+  return sumFirstDiag == BOARD_SIZE || sumSecDiag == BOARD_SIZE
 }
 
 const checkCols = (board: number[][]) => {

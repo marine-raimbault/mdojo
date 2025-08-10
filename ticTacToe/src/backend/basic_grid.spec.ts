@@ -1,6 +1,7 @@
 import { it, expect } from 'vitest'
 
 import { isWon, play } from './basic_grid'
+import { describe } from 'node:test'
 
 const startGrid = [
   [0, 0, 0],
@@ -27,54 +28,54 @@ it('play two turn', () => {
   ])
 })
 
-it('knows when someone won', () => {
-  expect(isWon(startGrid)).toEqual(false)
+describe('knows winning rules', () => {
+  it('win in a row', () => {
+    expect(
+      isWon([
+        [1, 1, 1],
+        [0, 0, 0],
+        [0, 0, 0],
+      ]),
+    ).toEqual(true)
+  })
 
-  expect(
-    isWon([
-      [1, 0, 1],
-      [0, 0, 0],
-      [0, 0, 0],
-    ]),
-  ).toEqual(false)
+  it('win in a col', () => {
+    expect(
+      isWon([
+        [1, 0, 0],
+        [1, 0, 0],
+        [1, 0, 0],
+      ]),
+    ).toEqual(true)
+  })
 
-  expect(
-    isWon([
-      [1, 0, 1],
-      [0, 0, 0],
-      [0, 0, 1],
-    ]),
-  ).toEqual(false)
+  it('win in a diag', () => {
+    expect(
+      isWon([
+        [1, 0, 0],
+        [0, 1, 0],
+        [0, 0, 1],
+      ]),
+    ).toEqual(true)
 
-  expect(
-    isWon([
-      [1, 1, 1],
-      [0, 0, 0],
-      [0, 0, 0],
-    ]),
-  ).toEqual(true)
+    expect(
+      isWon([
+        [0, 0, 1],
+        [0, 1, 0],
+        [1, 0, 0],
+      ]),
+    ).toEqual(true)
+  })
 
-  expect(
-    isWon([
-      [0, 0, 0],
-      [0, 0, 0],
-      [1, 1, 1],
-    ]),
-  ).toEqual(true)
+  it('not a win', () => {
+    expect(isWon(startGrid)).toEqual(false)
 
-  expect(
-    isWon([
-      [1, 0, 0],
-      [0, 1, 0],
-      [0, 0, 1],
-    ]),
-  ).toEqual(true)
-
-  expect(
-    isWon([
-      [1, 0, 0],
-      [1, 0, 0],
-      [1, 0, 0],
-    ]),
-  ).toEqual(true)
+    expect(
+      isWon([
+        [1, 0, 1],
+        [0, 0, 0],
+        [0, 0, 1],
+      ]),
+    ).toEqual(false)
+  })
 })
