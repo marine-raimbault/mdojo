@@ -2,6 +2,7 @@ defmodule FizzBuzz do
   def print(number) do
     cond do
       rem(number, 15) == 0 -> "FizzBuzz"
+      rem(number, 21) == 0 -> "FizzWhizz"
       rem(number, 3) == 0 -> "Fizz"
       rem(number, 5) == 0 -> "Buzz"
       rem(number, 7) == 0 -> "Whizz"
@@ -33,6 +34,14 @@ defmodule FizzBuzzTest do
     test "multiples of three or five prints FizzBuzz" do
       assert "FizzBuzz" = FizzBuzz.print(15)
       assert "FizzBuzz" = FizzBuzz.print(45)
+    end
+
+    test "multiples of 7 are Whizz" do
+      assert "Whizz" = FizzBuzz.print(7)
+    end
+
+    test "multiples of 3 and 7 are FizzWhizz" do
+      assert "FizzWhizz" = FizzBuzz.print(21)
     end
   end
 end
